@@ -66,13 +66,34 @@ export default function Mapbox({data}) {
   // }) : [];
 
   const [selectedLocation, setSelectedLocation] = useState(null);
-
+  const getColor = (riskRating) => {
+    console.log("getColor is called")
+    if (riskRating <= 0.39) {
+      return '#16A34A';
+    } else if (riskRating <= 0.60) {
+      return '#FFD52B';
+    } else {
+      return '#DE3831';
+    }
+  };
   useEffect(() => {
+    //  if(selectedYear=='All'){
+    //   setSelectedYear(2050);
+    //  } 
+      if (data) {
+        setFilteredData(data.filter((each) => each.Year === 2050));
+        
+      }
+    }, [data]);
+  useEffect(() => {
+  //  if(selectedYear=='All'){
+  //   setSelectedYear(2050);
+  //  } 
     if (data) {
-      setFilteredData(data.filter((each) => each.Year === 2050));
+      setFilteredData(data.filter((each) => each.Year === selectedYear));
       
     }
-  }, [data]);
+  }, [data,selectedYear]);
 
  //#############important hook
   useEffect(() => {
@@ -95,77 +116,35 @@ export default function Mapbox({data}) {
   return () => map.remove();
 }, []);
 
-  useEffect(() => {
-    // console.log("start of useeffect having dep with map and filtered data"+JSON.stringify(map))
-    if (filteredData && map) {
-      console.log("u have both the filtered data and map");
-    // fit bounds to the locations
-    // const bounds = new mapboxgl.LngLatBounds();
-    // filteredData.map((location) => {
-    // bounds.extend([location.Long, location.Lat]);
-    // });
-    // map.fitBounds(bounds, { padding: 50 });
-    // console.log("filtered data is :"+JSON.stringify(filteredData));
-    
-      // create markers for each location
-      filteredData.forEach((location) => {
-        console.log("marker forEach loop start");
-        const markerEl = document.createElement('div');
-        markerEl.className = 'marker';
-        markerEl.style.background = getColor(location);
-        // console.log("map is"+ map.Lat);
-        
-       const markerInstance= new mapboxgl.Marker({
-          element: markerEl,
-          anchor: 'bottom'
-        })
-          .setLngLat([location.Long, location.Lat])
-          .addTo(map)
-          .setPopup(
-            new mapboxgl.Popup({ offset: 25 })
-              .setHTML(`<h3>${location.Asset_Name}</h3><p>${location.Business_Category}</p>`)
+useEffect(() => {
+  if (filteredData && filteredData.length>0 && map) {
+    const bounds = new mapboxgl.LngLatBounds();
+    console.log("inside useeffect long and lat"+JSON.stringify(filteredData));
+    filteredData.forEach((location) => {
+      console.log("inside useeffect long and lat"+JSON.stringify([location.Long, location.Lat]));
+      bounds.extend([location.Long, location.Lat]);
+      const marker = new mapboxgl.Marker({
+        color: getColor(location['Risk Rating']),
+      })
+        .setLngLat([location.Long, location.Lat])
+        .setPopup(
+          new mapboxgl.Popup().setHTML(
+            `<h3>${location['Asset Name']}</h3><p>${location['Business Category']}</p>`
           )
-          .on('click', () => setSelectedLocation(location));
-          
-          markers.push(markerInstance);
-          console.log("marker instance:"+markerInstance);
-          
-          
-          return markerInstance;
-      });
-
-      const markersLayer = markers.map((marker) => {
-        const markerOptions = {
-          title: marker.assetName,
-        };
-        const markerIcon = document.createElement('div');
-        markerIcon.className = 'risk-marker';
-        markerIcon.innerHTML = marker.riskRating ? marker.riskRating.toString() : '';
-
+        )
+        .addTo(map);
+      markersLayerRef.current.push(marker);
     });
-    markersLayerRef.current = markersLayer;
-// clear existing markers
-// markersLayer.forEach((marker) => marker.remove());
-      
-// add new markers
-markers.forEach((marker, index) => {
-  
-  const markerLayer = markersLayerRef.current[index];
-  marker.addTo(map);
-
-  })
-}
-
-    }, [filteredData]);
+    console.log(JSON.stringify(bounds));
+    map.fitBounds(bounds, { padding: 50 });
+  }
+}, [filteredData, map]);
 
 
 
-    // useEffect(()=>{
-      function getColor(location) {
-        const colorScale = ['#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#225ea8'];
-        const index = Math.floor(location['Risk_Rating'] / 20);
-        return colorScale[index];
-        }
+
+
+
  
   return (
     <div >
@@ -173,7 +152,7 @@ markers.forEach((marker, index) => {
       
       <label htmlFor="year-select">Select year:</label>
       <select id="year-select" onChange={handleYearSelect}>
-        <option value="All">All</option>
+        {/* <option value="All">All</option> */}
         <option value="2030">2030</option>
         <option value="2040">2040</option>
         <option value="2050">2050</option>
