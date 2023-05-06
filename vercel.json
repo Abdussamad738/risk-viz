@@ -1,0 +1,8 @@
+{
+    "functions": {
+      "api/**/*": {
+        "memory": 250,
+        "maxDuration": 10
+      }
+    }
+  }
