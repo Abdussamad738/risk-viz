@@ -3,7 +3,7 @@ import { Table, Tag, Space } from 'antd';
 import {render} from 'react-dom';
 export default function DataTable ({ tabledata })  {
 
-  console.log("start of DataTable")
+  // console.log("start of DataTable")
 
     
 
@@ -161,7 +161,7 @@ return (
         </tr>
       </thead>
       <tbody>
-        {console.log(JSON.stringify(filteredData))}
+        {/* {console.log(JSON.stringify(filteredData))} */}
         {filteredData &&
           filteredData.map((item) => (
             <tr key={item.id}>

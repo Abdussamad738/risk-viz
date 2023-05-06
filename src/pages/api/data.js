@@ -56,14 +56,14 @@ import fs from 'fs';
 const url='public/climateRisk.xlsx'
 
 export default async function handler(req, res) {
-  console.log("Start of handler function in data.js");
-  console.log(encodeURI(url));
+  // console.log("Start of handler function in data.js");
+  // console.log(encodeURI(url));
   const filePath = serverPath(encodeURI(url));
   const fileBuffer = await fs.promises.readFile(filePath);
   const workbook = XLSX.read(fileBuffer, { type: 'buffer' });
   const worksheet = workbook.Sheets[workbook.SheetNames[0]];
   const jsonData = XLSX.utils.sheet_to_json(worksheet);
-  console.log("JSON data: " + JSON.stringify(jsonData));
+  // console.log("JSON data: " + JSON.stringify(jsonData));
   
   // const filteredData = jsonData.filter((data) => data.Year === 2050);
   res.status(200).json(jsonData);

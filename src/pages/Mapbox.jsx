@@ -34,7 +34,7 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
 
 export default function Mapbox({data}) {
-  console.log(JSON.stringify("data at first of mapbox:"));
+  // console.log(JSON.stringify("data at first of mapbox:"));
 
   const mapContainer = useRef(null);
 
@@ -67,7 +67,7 @@ export default function Mapbox({data}) {
 
   const [selectedLocation, setSelectedLocation] = useState(null);
   const getColor = (riskRating) => {
-    console.log("getColor is called")
+    // console.log("getColor is called")
     if (riskRating <= 0.39) {
       return '#16A34A';
     } else if (riskRating <= 0.60) {
@@ -112,16 +112,16 @@ export default function Mapbox({data}) {
       setZoom(map.getZoom().toFixed(2));
     });
     
-  console.log("This is just before the mapbox.js return &filteredData is :");
+  // console.log("This is just before the mapbox.js return &filteredData is :");
   return () => map.remove();
 }, []);
 
 useEffect(() => {
   if (filteredData && filteredData.length>0 && map) {
     const bounds = new mapboxgl.LngLatBounds();
-    console.log("inside useeffect long and lat"+JSON.stringify(filteredData));
+    // console.log("inside useeffect long and lat"+JSON.stringify(filteredData));
     filteredData.forEach((location) => {
-      console.log("inside useeffect long and lat"+JSON.stringify([location.Long, location.Lat]));
+      // console.log("inside useeffect long and lat"+JSON.stringify([location.Long, location.Lat]));
       bounds.extend([location.Long, location.Lat]);
       const marker = new mapboxgl.Marker({
         color: getColor(location['Risk Rating']),
@@ -135,7 +135,7 @@ useEffect(() => {
         .addTo(map);
       markersLayerRef.current.push(marker);
     });
-    console.log(JSON.stringify(bounds));
+    // console.log(JSON.stringify(bounds));
     map.fitBounds(bounds, { padding: 50 });
   }
 }, [filteredData, map]);

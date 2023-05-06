@@ -11,7 +11,7 @@ export default function LineGraph({ filteredData }) {
     const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722', '#795548', '#9e9e9e', '#607d8b'];
 
     if (filteredData && filteredData.length > 0) {
-      console.log("filtered data from LineGraph"+JSON.stringify(filteredData));
+    //   console.log("filtered data from LineGraph"+JSON.stringify(filteredData));
       const years = [...new Set(filteredData.map(d => d.Year))];
       years.sort((a, b) => a - b);
       years.forEach((year, index) => {
