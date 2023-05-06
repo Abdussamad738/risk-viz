@@ -54,8 +54,9 @@ import  { useState, useEffect } from "react";
 import * as XLSX from 'xlsx';
 import  {serverPath}  from '../../../next.config.cjs';
 import fs from 'fs';
+import path from 'path';
 const url = path.join(process.cwd(), 'public', 'climateRisk.xlsx');
-const path = require('path');
+
 export default async function handler(req, res) {
   // console.log("Start of handler function in data.js");
   // console.log(encodeURI(url));
