@@ -34,7 +34,7 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
 
 export default function Mapbox({data}) {
-  console.log(JSON.stringify("data at first of mapbox:"+JSON.stringify(data)));
+  console.log(JSON.stringify("data at first of mapbox:"));
 
   const mapContainer = useRef(null);
 

@@ -5,6 +5,8 @@ import Map from './Mapbox'
 import "@/pages/_app";
 import Link from 'next/link'
 import { useRef,useState,useEffect } from "react";
+import DataTable from './DataTable';
+import LineGraph from './LineGraph';
 //   const [markers, setMarkers] = useState<Marker[]>([]);
 
 export default function Home(){
@@ -29,6 +31,12 @@ export default function Home(){
     </li>
     <div>
       <Map data={data}/>
+      </div>
+      <div>
+        <DataTable data={data}/>
+      </div>
+      <div>
+        <LineGraph filteredData={data}/>
       </div>
     </ul>
     {/* {mapContainer.current && <Map />} */}
