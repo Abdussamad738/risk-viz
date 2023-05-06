@@ -60,7 +60,7 @@ const url = path.join(process.cwd(), 'public', 'climateRisk.xlsx');
 export default async function handler(req, res) {
   // console.log("Start of handler function in data.js");
   // console.log(encodeURI(url));
-  const filePath = serverPath(encodeURI(url));
+  const filePath = encodeURI(url);
   const fileBuffer = await fs.promises.readFile(filePath);
   const workbook = XLSX.read(fileBuffer, { type: 'buffer' });
   const worksheet = workbook.Sheets[workbook.SheetNames[0]];
