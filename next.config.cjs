@@ -4,7 +4,7 @@ const withImages = require('next-images');
 
 const path = require('path');
 const getConfig = require('next/config');
-console.log("start of cjs");
+// console.log("start of cjs");
 
 
 
@@ -29,7 +29,7 @@ export function serverPath  (staticFilePath)  {
   
   const serverRuntimeConfig = getConfig().serverRuntimeConfig;
   const PROJECT_ROOT = serverRuntimeConfig ? serverRuntimeConfig.PROJECT_ROOT : process.cwd();
-  console.log("this is from next.config "+JSON.stringify(serverRuntimeConfig)+JSON.stringify(PROJECT_ROOT) + staticFilePath+JSON.stringify(process.cwd()));
+  // console.log("this is from next.config "+JSON.stringify(serverRuntimeConfig)+JSON.stringify(PROJECT_ROOT) + staticFilePath+JSON.stringify(process.cwd()));
   return path.join(process.cwd(), staticFilePath)
 }
 module.exports = withPlugins([
