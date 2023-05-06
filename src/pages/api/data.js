@@ -57,7 +57,7 @@ import fs from 'fs';
 import path from 'path';
 const url = path.join(process.cwd(), 'public', 'climateRisk.xlsx');
 
-export default async function handler(req, res) {
+export default async function getStaticProps() {
   // console.log("Start of handler function in data.js");
   // console.log(encodeURI(url));
   const filePath = encodeURI(url);
@@ -68,5 +68,11 @@ export default async function handler(req, res) {
   // console.log("JSON data: " + JSON.stringify(jsonData));
   
   // const filteredData = jsonData.filter((data) => data.Year === 2050);
-  res.status(200).json(jsonData);
+  //res.status(200).json(jsonData);
+return {
+  props:{
+    data:jsonData,
+    },
+    revalidate:60*60*24,
+    };
 }
