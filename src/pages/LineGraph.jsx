@@ -64,7 +64,7 @@ export default function LineGraph({ filteredData }) {
   }, [chart, chartData]);
 
   return (
-    <div>
+    <div style={{backgroundColor:'#b9cbd1'}}>
       <canvas id="chart"></canvas>
     </div>
   );

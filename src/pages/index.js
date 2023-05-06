@@ -27,13 +27,13 @@ export default function Home(){
     <div>
     <ul>
     <li>
-      <Link href="/">Home</Link>    
+      <Link href="/">Risk Mapping website</Link>    
     </li>
     <div>
       <Map data={data}/>
       </div>
       <div>
-        <DataTable data={data}/>
+        <DataTable tabledata={data}/>
       </div>
       <div>
         <LineGraph filteredData={data}/>

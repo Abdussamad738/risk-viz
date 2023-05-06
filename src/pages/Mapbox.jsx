@@ -147,10 +147,10 @@ useEffect(() => {
 
  
   return (
-    <div >
+    <div style={{backgroundColor:'#f2f2f2'}}>
       
       
-      <label htmlFor="year-select">Select year:</label>
+      <label htmlFor="year-select">Select a year to check the Risk Markers:</label>
       <select id="year-select" onChange={handleYearSelect}>
         {/* <option value="All">All</option> */}
         <option value="2030">2030</option>
@@ -160,7 +160,7 @@ useEffect(() => {
         <option value="2070">2070</option>
       </select>
 
-      <div ref={mapContainer} className="map-container" style={{height: "400px"}}>
+      <div ref={mapContainer} className="map-container" style={{height: "500px"}}>
   
       </div>
       </div>

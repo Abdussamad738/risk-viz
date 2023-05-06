@@ -30,7 +30,7 @@
   }
   
   th:hover {
-    background-color: #ddd;
+    background-color: hsl(0, 23%, 83%);
   }
   
   th:last-child,
@@ -64,4 +64,7 @@
   
   .filter-container button:hover {
     background-color: #3e8e41;
+  }
+  body{
+   background-color: #d0d6d0; 
   }
