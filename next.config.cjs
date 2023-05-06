@@ -30,7 +30,7 @@ export function serverPath  (staticFilePath)  {
   const serverRuntimeConfig = getConfig().serverRuntimeConfig;
   const PROJECT_ROOT = serverRuntimeConfig ? serverRuntimeConfig.PROJECT_ROOT : process.cwd();
   // console.log("this is from next.config "+JSON.stringify(serverRuntimeConfig)+JSON.stringify(PROJECT_ROOT) + staticFilePath+JSON.stringify(process.cwd()));
-  return path.join(process.cwd(), staticFilePath)
+  return path.join(__dirname, staticFilePath)
 }
 module.exports = withPlugins([
   withImages(),
