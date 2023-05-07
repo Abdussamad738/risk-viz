@@ -55,19 +55,19 @@ import axios from 'axios';
 import * as XLSX from 'xlsx';
 import fs from 'fs';
 import path from 'path';
-import { parse } from 'csv-parse';
-const url=path.join( 'public', 'climateRisk.xlsx');
-export default async function handler(req, res) {
-  try {
-    const filePath = encodeURI(url);
-  const fileBuffer = await fs.promises.readFile(url);
+const url = path.join(process.cwd(), 'public', 'climateRisk.xlsx');
+
+export default async function getStaticProps() {
+  // console.log("Start of handler function in data.js");
+  // console.log(encodeURI(url));
+  const filePath = encodeURI(url);
+  const fileBuffer = await fs.promises.readFile(filePath);
   const workbook = XLSX.read(fileBuffer, { type: 'buffer' });
   const worksheet = workbook.Sheets[workbook.SheetNames[0]];
   const jsonData = XLSX.utils.sheet_to_json(worksheet);
+  // console.log("JSON data: " + JSON.stringify(jsonData));
+  
+  // const filteredData = jsonData.filter((data) => data.Year === 2050);
+  res.status(200).json(jsonData);
 
-    res.status(200).json(jsonData);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal Server Error');
-  }
 }
