@@ -16,7 +16,8 @@ export default function Home(){
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('https://risk-viz-psi.vercel.app/api/data');
+      // const response = await fetch('https://risk-viz-psi.vercel.app/api/data');
+      const response= await fetch ('https://localhost:3000/api/data')
       const data = await response.json();
       setData(data);
     }
