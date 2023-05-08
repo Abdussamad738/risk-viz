@@ -9,15 +9,19 @@ import DataTable from './DataTable';
 import LineGraph from './LineGraph';
 //   const [markers, setMarkers] = useState<Marker[]>([]);
 
+// import { jsonData } from './api/data';
+
+
 export default function Home(){
   // const data =  fetch('http://localhost:3000/api/data');
   
   const [data, setData] = useState(null);
+  console.log("start of home page")
 
   useEffect(() => {
     async function fetchData() {
       // const response = await fetch('https://risk-viz-psi.vercel.app/api/data');
-      const response= await fetch ('https://localhost:3000/api/data')
+      const response= await fetch ('http://localhost:3000/api/data')
       const data = await response.json();
       setData(data);
     }

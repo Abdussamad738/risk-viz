@@ -56,18 +56,14 @@ import * as XLSX from 'xlsx';
 import fs from 'fs';
 import path from 'path';
 const url = path.join(process.cwd(), 'public', 'climateRisk.xlsx');
+console.log(url);
 
-export default async function getStaticProps() {
-  // console.log("Start of handler function in data.js");
-  // console.log(encodeURI(url));
-  const filePath = encodeURI(url);
-  const fileBuffer = await fs.promises.readFile(filePath);
+export default async function handler(req, res) {
+  console.log("start of getStaticProps")
+  const fileBuffer = fs.readFileSync(url);
   const workbook = XLSX.read(fileBuffer, { type: 'buffer' });
   const worksheet = workbook.Sheets[workbook.SheetNames[0]];
   const jsonData = XLSX.utils.sheet_to_json(worksheet);
-  // console.log("JSON data: " + JSON.stringify(jsonData));
-  
-  // const filteredData = jsonData.filter((data) => data.Year === 2050);
+  console.log(jsonData+"end of jsondata");
   res.status(200).json(jsonData);
-
 }
