@@ -1,12 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
-import {render} from 'react-dom';
-import  MapGL,{ Marker, Popup } from 'react-map-gl';
-import { stringify } from 'querystring';
+
 import 'mapbox-gl/dist/mapbox-gl.css'
 import {MarkerSVG} from '@/utils/marker.svg';
-import Image from 'next/image';
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
