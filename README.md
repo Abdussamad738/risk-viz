@@ -1,5 +1,19 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
+## Overview
+
+Welcome to the Climate Risk Mapping website! This application was developed using Next.js and features seamless integration with Mapbox for dynamic mapping. The goal of this project is to provide users with a comprehensive visual representation of climate risks using data sourced from an XLSX file.
+
+## Features
+
+- **Dynamic Mapping:** Utilizing Mapbox for interactive and dynamic mapping, allowing users to explore climate risk data effortlessly.
+
+- **Interactive Markers:** Leveraging data from an XLSX file to place interactive markers on the map, offering a user-friendly experience.
+
+- **Insightful Visualizations:** Enhancing the user experience with line graphs and data tables to provide detailed insights into climate risks.
+
+
 ## Getting Started
 
 First, run the development server:
